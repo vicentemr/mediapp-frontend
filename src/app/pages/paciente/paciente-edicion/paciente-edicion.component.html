@@ -1,0 +1,48 @@
+<mat-card>Ingrese datos del paciente</mat-card>
+
+<form class="example-container" [formGroup]="form" #frmPaciente="ngForm" (ngSubmit)="operar()">
+
+  <div [hidden]="true">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="ID" required formControlName="id">
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Nombres" minLength="3" required formControlName="nombres">
+    <small *ngIf="f.nombres.errors?.required && f.nombres.touched" class="invalido">Nombre es requerido.</small>
+    <small *ngIf="f.nombres.errors?.minLength && f.nombres.touched" class="invalido">El nombre debe contener mínimo 3 caracteres.</small>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Apellidos" minLength="3" required formControlName="apellidos">
+    <small *ngIf="f.apellidos.errors?.required && f.apellidos.touched" class="invalido">Nombre es requerido.</small>
+    <small *ngIf="f.apellidos.errors?.minLength && f.apellidos.touched" class="invalido">El nombre debe contener mínimo 3 caracteres.</small>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="DNI" required formControlName="dni" type="number">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="EMAIL" required formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Teléfono" required formControlName="telefono" type="number">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Dirección" required formControlName="direccion">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="frmPaciente.invalid">
+    <mat-icon>done</mat-icon>
+    <span>Aceptar</span>
+  </button>
+
+  <button mat-raised-button color="warn" routerLink='/paciente' type="button">
+    <mat-icon>close</mat-icon>
+    <span>Cancelar</span>
+  </button>
+</form>
