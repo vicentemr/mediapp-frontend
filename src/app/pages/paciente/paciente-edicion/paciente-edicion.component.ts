@@ -97,7 +97,7 @@ export class PacienteEdicionComponent implements OnInit {
         this.pacienteService.listar().subscribe( data => {
           // this.pacienteService.pacienteCambio.next(data);
           this.pacienteService.setPacienteCambio(data);
-          this.pacienteService.setMensajeCambio('SE REGISTRÓ EL PACIENTE: ' + paciente.nombres + paciente.apellidos);
+          this.pacienteService.setMensajeCambio('SE REGISTRÓ EL PACIENTE: ' + paciente.nombres + ' ' + paciente.apellidos);
         });
       });
     }
