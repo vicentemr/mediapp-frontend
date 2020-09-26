@@ -16,7 +16,7 @@ import { MedicoDialogoComponent } from './medico-dialogo/medico-dialogo.componen
 })
 export class MedicoComponent implements OnInit {
 
-  displayedColumns = ['idmedico', 'nombres', 'apellidos', 'cmp', 'acciones']
+  displayedColumns = ['idmedico', 'nombres', 'apellidos', 'cmp', 'acciones'];
   dataSource: MatTableDataSource<Medico>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
