@@ -23,7 +23,7 @@ export class EspecialidadComponent implements OnInit {
   constructor(
     private especialidadService: EspecialidadService,
     private snackBar: MatSnackBar,
-    private route: ActivatedRoute
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
