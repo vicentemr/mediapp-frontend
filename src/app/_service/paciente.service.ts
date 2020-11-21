@@ -13,12 +13,17 @@ export class PacienteService extends GenericService<Paciente>{
 
   private pacienteCambio = new Subject<Paciente[]>();
   private mensajeCambio = new Subject<string>();
-  //private url: string = `${environment.HOST}/pacientes`
+  //private url: string = `${environment.HOST}/pacientes`;
 
   constructor(protected http: HttpClient) {
     super(
-      http, `${environment.HOST}/pacientes`
+      http,
+      `${environment.HOST}/pacientesx`
     );
+  }
+
+  listarPageable(p: number, s: number){
+    return this.http.get<any>(`${this.url}/pageable?page=${p}&size=${s}`);
   }
 
   /*listar(){
@@ -48,7 +53,7 @@ export class PacienteService extends GenericService<Paciente>{
   }
 
   setPacienteCambio(pacientes: Paciente[]) {
-    return this.pacienteCambio.next(pacientes);
+    this.pacienteCambio.next(pacientes);
   }
 
   getMensajeCambio() {
@@ -56,6 +61,6 @@ export class PacienteService extends GenericService<Paciente>{
   }
 
   setMensajeCambio(mensaje: string) {
-    this.mensajeCambio.next(mensaje)
+    return this.mensajeCambio.next(mensaje);
   }
 }

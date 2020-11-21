@@ -18,6 +18,7 @@ export class PacienteComponent implements OnInit {
   dataSource: MatTableDataSource<Paciente>;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  cantidad: number;
 
   constructor(
     private pacienteService: PacienteService,
@@ -36,12 +37,27 @@ export class PacienteComponent implements OnInit {
       this.snackBar.open(data, 'AVISO', {duration: 2000});
     });
 
-    this.pacienteService.listar().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
+    // this.pacienteService.listar().subscribe(data => {
+    //   this.dataSource = new MatTableDataSource(data);
+    //   this.dataSource.sort = this.sort;
+    //   this.dataSource.paginator = this.paginator;
+    // });
+
+    this.pacienteService.listarPageable(0, 10).subscribe(data => {
+      this.cantidad = data.totalElements;
+      this.dataSource = new MatTableDataSource(data.content);
       this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+      //this.dataSource.paginator = this.paginator;
     });
 
+  }
+
+  mostrarMas(e: any){
+    this.pacienteService.listarPageable(e.pageIndex, e.pageSize).subscribe(data => {
+      this.cantidad = data.totalElements;
+      this.dataSource = new MatTableDataSource(data.content);
+      this.dataSource.sort = this.sort;
+    });
   }
 
   filtrar(valor: string){
