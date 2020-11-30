@@ -1,0 +1,38 @@
+.fields {
+  width: 100%;
+}
+
+.formStyle {
+  display: flex;
+  flex-direction: column;
+}
+
+.formStyle>* {
+  width: 100%;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.th1{
+  padding-left: 20px;
+  text-align: left;
+}
+
+.th2{
+  padding-left: 20px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: left;
+  width: fit-content;
+}
+
+.invalido{
+  color:red;
+}
+
+input[readonly] {
+  background-color: rgb(216, 214, 214);
+  color: black;
+}

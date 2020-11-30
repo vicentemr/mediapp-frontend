@@ -1,0 +1,92 @@
+<form class="formStyle" [formGroup]="form" #signosForm = "ngForm">
+  <table>
+    <tr>
+      <th class="th1">
+        <label>Paciente</label>
+      </th>
+      <th class="th2">
+        <div [hidden]="true">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="ID" required formControlName="id">
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <input type="text" placeholder="Paciente" matInput [matAutocomplete]="autoPaciente" [formControl]="controlPaciente" formControlName="paciente" [readonly]="edicion" required>
+          <small *ngIf="f.paciente.errors?.required && f.paciente.touched" class="invalido">Es requerido.</small>
+        </mat-form-field>
+
+        <mat-autocomplete #autoPaciente="matAutocomplete" [displayWith]="mostrarPacientes" (optionSelected)="seleccionarPaciente($event)">
+          <mat-option *ngFor="let p of pacientesFiltrados$ | async" [value]="p">
+            {{ p.nombres }} {{ p.apellidos }}
+          </mat-option>
+        </mat-autocomplete>
+      </th>
+      <th>
+        <button mat-raised-button color="primary" (click)="openDialog()" [disabled]="edicion">Nuevo Paciente</button>
+      </th>
+
+    </tr>
+
+    <tr>
+      <th class="th1">
+        <label>Fecha</label>
+      </th>
+      <th class="th2">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Elija una fecha" [max]="fechaMax" formControlName="fecha" [(ngModel)]="fechaSeleccionada" required>
+          <small *ngIf="f.fecha.errors?.required && f.fecha.touched" class="invalido">Es requerido.</small>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </th>
+      <th></th>
+    </tr>
+
+    <tr>
+      <th class="th1">
+        <label>Temperatura</label>
+      </th>
+      <th colspan="2" class="th2">
+        <mat-form-field>
+          <input matInput placeholder="Temperatura (°C)" [(ngModel)]="temperatura" formControlName="temperatura" required>
+          <small *ngIf="f.temperatura.errors?.required && f.temperatura.touched" class="invalido">Es requerido.</small>
+        </mat-form-field>
+      </th>
+    </tr>
+
+    <tr>
+      <th class="th1">
+        <label>Pulso</label>
+      </th>
+      <th colspan="2" class="th2">
+        <mat-form-field>
+          <input matInput placeholder="Pulso (latidos/segundo)" [(ngModel)]="pulso" formControlName="pulso" required>
+          <small *ngIf="f.pulso.errors?.required && f.pulso.touched" class="invalido">Es requerido.</small>
+        </mat-form-field>
+      </th>
+    </tr>
+
+    <tr>
+      <th class="th1">
+        <label>Ritmo</label>
+      </th>
+      <th colspan="2" class="th2">
+        <mat-form-field>
+          <input matInput placeholder="Ritmo respiratorio(respiros/minuto)" [(ngModel)]="ritmo" formControlName="ritmo" required>
+          <small *ngIf="f.ritmo.errors?.required && f.ritmo.touched" class="invalido">Es requerido.</small>
+        </mat-form-field>
+      </th>
+    </tr>
+  </table>
+
+  <button mat-raised-button color="primary" type="submit" (click)="aceptar()" [disabled]="signosForm.invalid">
+    <mat-icon>done</mat-icon>
+    <span>Aceptar</span>
+  </button>
+  <button mat-raised-button color="accent" routerLink="/signos" type="button">
+    <mat-icon>close</mat-icon>
+    <span>Cancelar</span>
+  </button>
+
+</form>

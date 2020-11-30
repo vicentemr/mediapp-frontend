@@ -29,12 +29,10 @@ export class LoginComponent implements OnInit {
 
   iniciarSesion(){
     this.loginService.login(this.usuario, this.clave).subscribe(data => {
-      console.log(data);
       sessionStorage.setItem(environment.TOKEN_NAME, data.access_token);
 
       const helper = new JwtHelperService();
       let decodeToken = helper.decodeToken(data.access_token);
-      console.log(decodeToken);
       this.menuService.listarPorUsuario(decodeToken.user_name).subscribe(data => {
         this.loginService.setMenuCambio(data);
         this.router.navigate(['paciente']);

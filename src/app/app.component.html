@@ -8,12 +8,16 @@
       <h1 class="example-app-name">MEDIAPP</h1>
       <span class="example-spacer"></span>
 
+      <div style="margin-top: 10px;" *ngIf="tienePerfil">
+        <p><span class="user">{{ per.nombre_usuario }}</span><br/><span class="rol">{{ per.rol }}</span></p>
+      </div>
+
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
 
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/perfil">
+        <button mat-menu-item routerLink="/perfil" (click)="datosUsuario()">
           <mat-icon>account_box</mat-icon>
           <span>Mi Perfil</span>
         </button>

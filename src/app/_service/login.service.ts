@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 export class LoginService {
 
   private menuCambio = new Subject<Menu[]>();
-  private url: string = `${environment.HOST}/oauth/token`
+  private url: string = `${environment.HOST}/oauth/token`;
+
   constructor(
     private http: HttpClient,
     private router: Router
@@ -23,6 +24,7 @@ export class LoginService {
     return this.http.post<any>(this.url, body, {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').set('Authorization', 'Basic ' + btoa(environment.TOKEN_AUTH_USERNAME + ':' + environment.TOKEN_AUTH_PASSWORD))
     });
+
   }
 
   getMenuCambio(){
@@ -50,6 +52,7 @@ export class LoginService {
       sessionStorage.clear();
       this.router.navigate(['login']);
     }
+
   }
 
   enviarCorreo(correo: string){

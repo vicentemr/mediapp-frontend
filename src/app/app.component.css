@@ -15,3 +15,12 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+
+.user{
+  margin-top: 10px;
+  font-size: x-large;
+}
+
+.rol{
+  font-size: smaller;
+}

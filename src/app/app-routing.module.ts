@@ -18,6 +18,9 @@ import { Not403Component } from './pages/not403/not403.component';
 import { Not404Component } from './pages/not404/not404.component';
 import { RecuperarComponent } from './pages/login/recuperar/recuperar.component';
 import { TokenComponent } from './pages/login/recuperar/token/token.component';
+import { SignosEdicionComponent } from './pages/signos-edicion/signos-edicion.component';
+import { SignosComponent } from './pages/signos/signos.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 const routes: Routes = [
   {
@@ -49,6 +52,11 @@ const routes: Routes = [
       { path: ':token', component: TokenComponent }
     ]
   },
+  { path: 'signos', component: SignosComponent, children: [
+    { path: 'nuevo', component: SignosEdicionComponent },
+    { path: 'edicion/:id', component: SignosEdicionComponent },
+  ], canActivate: [GuardService] },
+  { path: 'perfil', component: PerfilComponent },
   { path: 'not-403', component: Not403Component },
   { path: 'not-404', component: Not404Component },
   { path: 'login', component: LoginComponent },

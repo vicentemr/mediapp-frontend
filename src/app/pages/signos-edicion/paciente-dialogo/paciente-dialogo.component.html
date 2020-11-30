@@ -1,0 +1,28 @@
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Nombres" minLength="3" required [(ngModel)]="paciente.nombres">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Apellidos" minLength="3" required [(ngModel)]="paciente.apellidos">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="DNI" required [(ngModel)]="paciente.dni" max="8" maxlength="8" type="number" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Dirección" required [(ngModel)]="paciente.direccion">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Teléfono" required [(ngModel)]="paciente.telefono" max="9" maxlength="9" type="number" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Email" required [(ngModel)]="paciente.email">
+  </mat-form-field>
+</div>
+<button mat-raised-button color="primary" (click)="registrar()" >
+  <mat-icon>done</mat-icon>
+  <span>Aceptar</span>
+</button>
+<button mat-raised-button color="accent" (click)="cancelar()">
+  <mat-icon>close</mat-icon>
+  <span>Cancelar</span>
+</button>

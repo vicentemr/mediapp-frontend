@@ -28,8 +28,12 @@ export class ServerErrorsInterceptor implements HttpInterceptor {
                 if (err.status === 400) {
                     this.snackBar.open(err.message, 'ERROR 400', { duration: 5000 });
                 }
+                else if(err.status === 401){
+                  sessionStorage.clear();
+                  this.router.navigate(['/login']);
+                }
                 else if (err.status === 404){
-                    this.snackBar.open('No existe el recurso', 'ERROR 400', { duration: 5000 });
+                    this.snackBar.open('No existe el recurso', 'ERROR 404', { duration: 5000 });
                 }
                 else if (err.status === 403) {
                     console.log(err);

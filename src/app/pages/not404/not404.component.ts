@@ -10,6 +10,7 @@ export class Not404Component implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    sessionStorage.clear();
   }
 
 }

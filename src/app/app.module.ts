@@ -31,7 +31,11 @@ import { Not404Component } from './pages/not404/not404.component';
 import { ServerErrorsInterceptor } from './shared/server-error.interceptor';
 import { RecuperarComponent } from './pages/login/recuperar/recuperar.component';
 import { TokenComponent } from './pages/login/recuperar/token/token.component';
+import { SignosEdicionComponent } from './pages/signos-edicion/signos-edicion.component';
 import { SignosComponent } from './pages/signos/signos.component';
+import { PacienteDialogoComponent } from './pages/signos-edicion/paciente-dialogo/paciente-dialogo.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+
 
 export function tokenGetter() {
   return sessionStorage.getItem(environment.TOKEN_NAME);
@@ -59,7 +63,10 @@ export function tokenGetter() {
     Not404Component,
     RecuperarComponent,
     TokenComponent,
-    SignosComponent
+    SignosEdicionComponent,
+    SignosComponent,
+    PacienteDialogoComponent,
+    PerfilComponent
   ],
   imports: [
 
@@ -81,11 +88,12 @@ export function tokenGetter() {
     }),
   ],
   providers: [
+    PerfilComponent,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServerErrorsInterceptor,
       multi: true,
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })
